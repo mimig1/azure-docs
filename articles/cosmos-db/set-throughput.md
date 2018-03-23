@@ -13,7 +13,7 @@ ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 01/02/2018
+ms.date: 03/23/2018
 ms.author: mimig
 
 ---
@@ -64,8 +64,8 @@ Offer offer = client.CreateOfferQuery()
     .AsEnumerable()
     .SingleOrDefault();
 
-// Set the throughput to the new value, for example 12,000 request units per second
-offer = new OfferV2(offer, 12000);
+// Set the throughput to the new value, for example 1,000 request units per second
+offer = new OfferV2(offer, 1000);
 
 // Now persist these changes to the collection by replacing the original offer resource
 await client.ReplaceOfferAsync(offer);
@@ -88,7 +88,7 @@ assertThat(offer.getString("offerResourceId"), equalTo(collectionResourceId));
 assertThat(offer.getContent().getInt("offerThroughput"), equalTo(throughput));
 
 // update the offer
-int newThroughput = 10300;
+int newThroughput = 1000;
 offer.getContent().put("offerThroughput", newThroughput);
 client.replaceOffer(offer);
 ```
